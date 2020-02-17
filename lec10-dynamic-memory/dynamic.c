@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define ALPHABET_LEN 26
+
 /**
  * This program's purpose is to demonstrate fundamental operations
  * around dynamic memory w/ malloc, caloc, realloc, and free.
@@ -12,16 +14,14 @@ char *resize_string(char*, size_t);
 
 int main()
 {
-    // TODO: 
-    // 1. Establish a pointer to a char and assign it
-    //    the result of establishing a new string of 27 bytes.
-    // 2. Call fill_lowercase and give pointer to the string.
-    // 3. Print the string's contents using printf
+    char *str = new_string(ALPHABET_LEN + 1);
+    fill_lowercase(str);
+    printf("%s\n", str);
 }
 
 /**
- * Allocates a character array on the heap of size_t and zeros.
- * Program exits if out of memory.
+ * Allocates a character array on the heap of size_t and zeros
+ * the memory out. Program exits if out of memory.
  */
 char *new_string(size_t size)
 {
@@ -45,9 +45,9 @@ char *resize_string(char *str, size_t size)
  */
 void fill_lowercase(char str[])
 {
-    for (int i = 0; i <= 26; ++i) {
+    for (int i = 0; i <= ALPHABET_LEN; ++i) {
         str[i] = 'a' + i;
     }
-    str[26] = '\0';
+    str[ALPHABET_LEN] = '\0';
 }
 
