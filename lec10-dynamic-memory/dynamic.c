@@ -1,20 +1,22 @@
+/**
+ * This program's purpose is to demonstrate fundamental operations
+ * around dynamic memory w/ malloc, calloc, free, and realloc
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
+// stdlib includes malloc, calloc, free, and realloc
 
 #define ALPHABET_LEN 26
 
-/**
- * This program's purpose is to demonstrate fundamental operations
- * around dynamic memory w/ malloc, caloc, realloc, and free.
- */
-
-char *new_string(size_t);
+char *string_malloc(size_t);
+char *string_calloc(size_t);
+char *string_realloc(char*, size_t);
 void fill_lowercase(char[]);
-char *resize_string(char*, size_t);
 
 int main()
 {
-    char *str = new_string(ALPHABET_LEN + 1);
+    char *str = string_malloc(ALPHABET_LEN + 1);
     fill_lowercase(str);
     printf("%s\n", str);
 }
@@ -23,7 +25,16 @@ int main()
  * Allocates a character array on the heap of size_t and zeros
  * the memory out. Program exits if out of memory.
  */
-char *new_string(size_t size)
+char *string_malloc(size_t size)
+{
+    return NULL;
+}
+
+/**
+ * Allocates a character array on the heap of size_t and zeros
+ * the memory out. Program exits if out of memory.
+ */
+char *string_calloc(size_t size)
 {
     return NULL;
 }
@@ -33,7 +44,7 @@ char *new_string(size_t size)
  * to (potentially) new location of char array. If moved,
  * all bytes copied automatically. Program exits if out of mem.
  */
-char *resize_string(char *str, size_t size)
+char *string_realloc(char *str, size_t size)
 {
     return NULL;
 }
