@@ -10,6 +10,10 @@ int main()
 {
     size_t len = length(HELLO);
     char *clone = calloc(len, sizeof(char));
+    if (clone == NULL) {
+        fprintf(stderr, "out of memory");
+        exit(EXIT_FAILURE);
+    }
     copy(HELLO, clone);
     printf("%s\n", clone);
 }
