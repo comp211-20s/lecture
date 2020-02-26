@@ -7,7 +7,6 @@ struct Point {
 };
 
 // Forward Function Declarations
-// void Point_init(Point *this, double x, double y);
 // Point Point_add(const Point *this, const Point *to);
 void Point_print(const struct Point *this);
 
