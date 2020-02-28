@@ -3,12 +3,6 @@
 
 #include "Guards.h"
 
-static int foo;
-
-static int bar() {
-    return 1;
-}
-
 void* OOM_GUARD(void *p)
 {
     if (p == NULL) {
