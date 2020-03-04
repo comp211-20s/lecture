@@ -28,11 +28,12 @@ void Path_init(Path *this, Point point, Path *next)
 Path* Path_extend(Path *this, Point next)
 {
     assert(this != NULL);
-    while (this->next != NULL) {
-        this = this->next;
+    if (this->next == NULL) {
+        this->next = Path_new(next);
+        return this->next;
+    } else {
+        return Path_extend(this->next, next);
     }
-    this->next = Path_new(next);
-    return this->next;
 }
 
 double Path_length(const Path *this)
@@ -48,22 +49,18 @@ double Path_length(const Path *this)
 
 Path* Path_free(Path *this)
 {
-    if (this != NULL) {
-        Path_free(this->next);
-        free(this);
-    }
+    free(this);
     return NULL;
 }
 
 void Path_print(const Path *this)
 {
-    Path *cursor = (Path *)this; // Cast required to drop const
-    while (cursor != NULL) {
-        printf("(%f, %f)", cursor->point.x, cursor->point.y);
-        cursor = cursor->next;
-        if (cursor != NULL) {
-            printf(" -> ");
+    if (this != NULL) {
+        if (this->next != NULL) {
+            printf("(%f, %f) -> ", this->point.x, this->point.y);
+            Path_print(this->next);
+        } else {
+            printf("(%f, %f)\n", this->point.x, this->point.y);
         }
     }
-    printf("\n");
 }
