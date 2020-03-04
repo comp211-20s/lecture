@@ -6,8 +6,8 @@ CC_FLAGS=-Wall -Wextra -std=c11 -g
 LINK_MATH=-lm
 
 # Rules
-lec14: main.o Guards.o Point.o Path.o
-	${CC} ${CC_FLAGS} ${^} -o ${@} ${LINK_MATH}
+lec14: main.o Guards.o Point.o Path.o 
+	gcc -Wall -Wextra -std=c11 -g main.o Guards.o Point.o Path.o -o lec14 -lm
 
 main.o: main.c
 	${CC} ${CC_FLAGS} -c main.c
