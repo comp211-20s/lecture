@@ -28,7 +28,7 @@ TEST(Vec, ref) {
 }
 
 TEST(Vec, set) {
-    Vec v = Vec_value(10, sizeof(int16_t));
+    Vec v = Vec_value(1, sizeof(int16_t));
 
     int16_t x = 1;
     Vec_set(&v, 0, &x);
@@ -41,18 +41,17 @@ TEST(Vec, set) {
 }
 
 TEST(Vec, get) {
-    Vec v = Vec_value(10, sizeof(int16_t));
+    Vec v = Vec_value(1, sizeof(int16_t));
     // Dig into the abstraction to predefine some data
     int16_t *buffer = (int16_t*)v.buffer;
     buffer[0] = 1;
-    buffer[1] = 2;
-    v.length = 2;
+    v.length = 1;
 
-    int16_t value;
+    int16_t value = 0;
     Vec_get(&v, 0, &value);
     ASSERT_EQ(1, value);
-    Vec_get(&v, 1, &value);
-    ASSERT_EQ(2, value);
+
+    Vec_drop(&v);
 }
 
 // TODO: Contractual Tests
