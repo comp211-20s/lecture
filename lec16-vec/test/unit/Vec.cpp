@@ -31,15 +31,11 @@ TEST(Vec, set) {
     Vec v = Vec_value(10, sizeof(int16_t));
 
     int16_t x = 1;
-    int16_t y = 2;
     Vec_set(&v, 0, &x);
     ASSERT_EQ(1, v.length);
-    Vec_set(&v, 1, &y);
-    ASSERT_EQ(2, v.length);
 
     int16_t *buffer = (int16_t*)v.buffer;
     ASSERT_EQ(x, buffer[0]);
-    ASSERT_EQ(y, buffer[1]);
 
     Vec_drop(&v);
 }
