@@ -91,9 +91,11 @@ Token take_lol(CharItr *itr) {
         valid = false;
     }
 
-    while (valid && (peek(*itr) == 'o' || peek(*itr) == 'l')) {
-        next(itr); // consume the character
-        length += 1;
+    if (valid) {
+        while ((peek(*itr) == 'o' || peek(*itr) == 'l')) {
+            next(itr); // consume the character
+            length += 1;
+        }
     }
 
     Slice location = {
