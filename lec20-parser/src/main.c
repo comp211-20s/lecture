@@ -17,27 +17,16 @@ bool read_next_line(char *buffer, size_t max_length);
 /* Helper to print a Token */
 void visit(const Node *node, size_t spaces);
 
+/* Helper to indent output by n_spaces */
+void indent(size_t n_spaces);
+
 int main() {
     while (read_next_line(buffer, MAX_LINE_LENGTH)) {
         CharItr itr = CharItr_value(buffer, strlen(buffer));
         Scanner scanner = Scanner_value(itr);
-        while (Scanner_has_next(&scanner)) {
-            Node *node = parse(&scanner);
-            visit(node, 0);
-            Node_drop(node);
-        }
-    }
-}
-
-// A naive implementation of reading a line.
-bool read_next_line(char *buffer, size_t max_length) {
-    return fgets(buffer, max_length, stdin) != NULL;
-}
-
-void indent(size_t spaces)
-{
-    for (size_t i = 0; i < spaces; ++i) {
-        putchar(' ');
+        Node *node = parse(&scanner);
+        visit(node, 0);
+        Node_drop(node);
     }
 }
 
@@ -58,4 +47,15 @@ void visit(const Node *node, size_t spaces)
             indent(spaces);
             printf(")\n");
     }
+}
+
+void indent(size_t spaces)
+{
+    for (size_t i = 0; i < spaces; ++i) {
+        putchar(' ');
+    }
+}
+
+bool read_next_line(char *buffer, size_t max_length) {
+    return fgets(buffer, max_length, stdin) != NULL;
 }
