@@ -36,10 +36,10 @@ int main() {
 // Expected visit Output:
 // 
 // Pair(
-//   Char('a'),
+//   Char('a')
 //   Pair(
-//     Char('b'),
-//     Char('c'),
+//     Char('b')
+//     Char('c')
 //   )
 // )
 void visit(const Node *node, size_t spaces)
