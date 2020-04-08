@@ -3,7 +3,6 @@
 
 #include <stdbool.h>
 
-#include "Slice.h"
 #include "CharItr.h"
 #include "Token.h"
 

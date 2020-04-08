@@ -23,6 +23,15 @@ Node* parse(Scanner *scanner)
     }
 }
 
+static Node* parse_char(Scanner *scanner)
+{
+    Token next = Scanner_next(scanner);
+    if (next.type != CHAR_TOKEN) {
+        return ErrorNode_new("Expected Char");
+    }
+    return CharNode_new(next.lexeme);
+}
+
 static Node* parse_pair(Scanner *scanner)
 {
     Token next;
@@ -57,10 +66,4 @@ static Node* parse_pair(Scanner *scanner)
     }
 
     return PairNode_new(left, right);
-}
-
-static Node* parse_char(Scanner *scanner)
-{
-    Token next = Scanner_next(scanner);
-    return CharNode_new(next.lexeme);
 }

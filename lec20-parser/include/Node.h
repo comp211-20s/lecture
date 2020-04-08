@@ -9,22 +9,24 @@ typedef enum NodeType {
 
 typedef struct Node Node; // Forward Declaration
 
-typedef struct PairData {
+typedef struct PairValue {
     Node *left;
     Node *right;
-} PairData;
+} PairValue;
 
-typedef char CharData;
+typedef char CharValue;
 
-typedef const char* ErrorData;
+typedef const char* ErrorValue;
+
+typedef union {
+    PairValue pair;
+    CharValue value;
+    ErrorValue error;
+} NodeValue;
 
 struct Node {
     NodeType type;
-    union {
-        PairData pair;
-        CharData value;
-        ErrorData error;
-    } data;
+    NodeValue data;
 };
 
 Node* CharNode_new(char c);
