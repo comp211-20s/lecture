@@ -30,23 +30,21 @@ int main() {
     }
 }
 
+// Original Input String:
+// (a (b c))
+//
+// Expected visit Output:
+// 
+// Pair(
+//   Char('a'),
+//   Pair(
+//     Char('b'),
+//     Char('c'),
+//   )
+// )
 void visit(const Node *node, size_t spaces)
 {
-    indent(spaces);
-    switch (node->type) {
-        case ERROR_NODE:
-            fprintf(stderr, "Error: %s\n", node->data.error);
-            break;
-        case CHAR_NODE:
-            printf("Char('%c')\n", node->data.value);
-            break;
-        case PAIR_NODE:
-            printf("Pair(\n");
-            visit(node->data.pair.left, spaces + 2);
-            visit(node->data.pair.right, spaces + 2);
-            indent(spaces);
-            printf(")\n");
-    }
+    // TODO
 }
 
 void indent(size_t spaces)
