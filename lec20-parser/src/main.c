@@ -21,9 +21,11 @@ int main() {
     while (read_next_line(buffer, MAX_LINE_LENGTH)) {
         CharItr itr = CharItr_value(buffer, strlen(buffer));
         Scanner scanner = Scanner_value(itr);
-        Node *node = parse(&scanner);
-        visit(node, 0);
-        Node_drop(node);
+        while (Scanner_has_next(&scanner)) {
+            Node *node = parse(&scanner);
+            visit(node, 0);
+            Node_drop(node);
+        }
     }
 }
 
