@@ -56,12 +56,13 @@ Token Scanner_peek(const Scanner *self)
 
 Token Scanner_next(Scanner *self)
 {
+    Token next = Scanner_peek(self);
     if (Scanner_has_next(self)) {
-        Token next = Scanner_peek(self);
         self->next = CharItr_next(&self->char_itr);
         return next;
     } else {
-        fprintf(stderr, "%s:%d - Out of Bounds", __FILE__, __LINE__);
-        exit(EXIT_FAILURE);
+        // When we reach the end, rather than error, keep returning
+        // END_TOKEN values.
+        return next;
     }
 }

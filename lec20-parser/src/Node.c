@@ -35,8 +35,8 @@ void* Node_drop(Node *self)
         case CHAR_NODE:
             break;
         case PAIR_NODE:
-            free(self->data.pair.left);
-            free(self->data.pair.right);
+            Node_drop(self->data.pair.left);
+            Node_drop(self->data.pair.right);
             break;
     }
     free(self);
